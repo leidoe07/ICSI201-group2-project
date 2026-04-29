@@ -7,7 +7,7 @@
 * Import the solver (Farviz)
     * Get the numbers to genetrate
     * Get a validator to check the numbers
-* Get started on the documentation
+* Get started on the documentation(Kenenth)
     * few lines of the code
     * pictures of the test runs
     * presentation of the code
