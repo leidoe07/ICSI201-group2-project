@@ -1,10 +1,10 @@
 package sudoku;
-
+import java.util.Scanner;
 public class Sudoku {
 
 	public static void main(String[] args) {
 int[][] grid = new int[9][9];
-		
+		System.out.println("")
 		grid[0][0] = 5;
 		grid[0][1] = 3;
 		grid[1][0] = 6;
