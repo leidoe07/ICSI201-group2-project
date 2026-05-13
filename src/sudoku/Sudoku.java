@@ -10,19 +10,19 @@ int clues = selectDifficulty(scanner);   // ask player for difficulty
 generatePuzzle(grid, clues);      // generate the puzzle
 
 while (true) {
-    printGrid(grid);
+    printGrid(grid);//display current state of the sudoku board
     
-    if (isFull(grid)) {
+    if (isFull(grid)) {//check if the grid is already complete
         System.out.println("YOU WIN!");
 		scanner.close();
         break;
     }
-
+    	//get users input for row, col, and, value
 		System.out.print("what cell would you like input"
 				+ "\n row 0 to 8:");
-		if(!scanner.hasNextInt()) {
+		if(!scanner.hasNextInt()) {//makes sure only numbers can be added
 			System.out.println("Invalid value!");
-			scanner.next();
+			scanner.next();//takes user input
 			continue;
 		}
 		int row =scanner.nextInt();
@@ -57,33 +57,23 @@ while (true) {
 			    System.out.println("\"Invalid move!\"");
 			}
 }
-//		if (solve(grid)) {
-//		    System.out.println("Solved:");
-//		} else {
-//		    System.out.println("No solution");
-//		}
-//		printGrid(grid);
 
-
-	
-		
-		
 	}
 		
 		public static void printGrid(int[][] grid) {
 	    for (int row = 0; row < 9; row++) {
-	        // Every 3 rows, print a horizontal line
+	        // every 3 rows print a horizontal line
 	        if (row % 3 == 0 && row != 0) {
 	            System.out.println("---------+---------+---------");
 	        }
 
 	        for (int col = 0; col < 9; col++) {
-	            // Every 3 columns, print a vertical line
+	            // every 3 columns print a vertical line
 	            if (col % 3 == 0 && col != 0) {
 	                System.out.print("|");
 	            }
 	            
-	            // Print the cell value with padding
+	         
 	            System.out.print(" " + grid[row][col] + " ");
 	        }
 	        System.out.println(" ");
@@ -93,9 +83,9 @@ while (true) {
 	
 		static boolean isValid(int[][] grid, int row, int col, int num) // check if num can be placed at grid[row][col]
 		{
-		    for (int i = 0; i < 9; i++){ // loop through the row and column
-		    if (grid[row][i] == num) return false; //same nunmber in row
-		    if (grid[i][col] == num) return false; //same nunmber in column
+		    for (int i = 0; i < 9; i++){ // loop through the row and column to check for dupilcates
+		    if (grid[row][i] == num) return false; //same number in row
+		    if (grid[i][col] == num) return false; //same number in column
 		    }
 		    int boxRow = (row / 3) * 3; // find the top left corner of the 3x3 box
 		    int boxCol = (col / 3) * 3; // find the top left corner of the 3x3 box
