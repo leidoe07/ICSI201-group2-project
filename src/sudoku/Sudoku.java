@@ -1,26 +1,20 @@
 package sudoku;
 import java.util.Scanner;
+import java.util.Random;
 public class Sudoku {
 
 	public static void main(String[] args) {
 int[][] grid = new int[9][9];
-Scanner scanner=new Scanner(System.in);
-grid[0][0] = 5; 
-grid[0][1] = 3; 
-grid[0][4] = 7;
-grid[1][0] = 6; 
-grid[1][3] = 1; 
-grid[1][4] = 9; 
-grid[1][5] = 5;
-grid[2][1] = 9; 
-grid[2][2] = 8; 
-grid[2][7] = 6;
+Scanner scanner = new Scanner(System.in);
+int clues = selectDifficulty(scanner);   // ask player for difficulty
+generatePuzzle(grid, clues);      // generate the puzzle
 
 while (true) {
     printGrid(grid);
     
     if (isFull(grid)) {
         System.out.println("YOU WIN!");
+		scanner.close();
         break;
     }
 
@@ -41,11 +35,7 @@ while (true) {
 			} else {
 			    System.out.println("\"Invalid move!\"");
 			}
-		 
-
-		 printGrid(grid);
 }
-	
 //		if (solve(grid)) {
 //		    System.out.println("Solved:");
 //		} else {
@@ -121,6 +111,33 @@ while (true) {
 		    }
 		    return true; // solved
 		}
-		
+
+		static void generatePuzzle(int[][] grid, int clues) {
+		    solve(grid);                       // fill the whole board using the solver
+		    Random rand = new Random();
+		    int toRemove = 81 - clues;         // figure out how many cells to erase
+		    while (toRemove > 0) {
+		        int r = rand.nextInt(9);        // pick a random row
+		        int c = rand.nextInt(9);        // pick a random col
+		        if (grid[r][c] != 0) {         // only erase if the cell isn't already empty
+		            grid[r][c] = 0;
+		            toRemove--;
+		        }
+		    }
+		}
+
+		static int selectDifficulty(Scanner scanner) {
+		    System.out.println("Select difficulty:");
+		    System.out.println("  1 = Easy   (45 clues)");
+		    System.out.println("  2 = Medium (35 clues)");
+		    System.out.println("  3 = Hard   (25 clues)");
+		    System.out.print("Enter 1, 2, or 3: ");
+		    int choice = scanner.nextInt();
+		    switch (choice) {
+		        case 1: return 45; // easy
+		        case 3: return 25; // hard
+		        default: return 35; // medium
+		    }
+		}	
 	
 }
