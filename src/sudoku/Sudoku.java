@@ -20,11 +20,32 @@ while (true) {
 
 		System.out.print("what cell would you like input"
 				+ "\n row 0 to 8:");
+		if(!scanner.hasNextInt()) {
+			System.out.println("Invalid value!");
+			scanner.next();
+			continue;
+		}
 		int row =scanner.nextInt();
+		
 		System.out.print("col  0 to 8:");
+		if(!scanner.hasNextInt()) {
+			System.out.println("Invalid value!");
+			scanner.next();
+			continue;
+		}
 		int col=scanner.nextInt();
 		
+		if(row < 0 || row > 8 || col < 0 || col > 8) {
+		    System.out.println("Row and column must be between 0-8.");
+		    continue;
+		}
+		
 		System.out.print("input a value");
+		if(!scanner.hasNextInt()) {
+			System.out.println("Invalid value!");
+			scanner.next();
+			continue;
+		}
 		 int value= scanner.nextInt();
 		 if (grid[row][col] != 0) {
 			    System.out.println("Cell already has a value!");
