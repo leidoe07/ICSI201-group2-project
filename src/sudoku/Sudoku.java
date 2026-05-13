@@ -20,9 +20,12 @@ while (true) {
     	//get users input for row, col, and, value
 		System.out.print("what cell would you like input"
 				+ "\n row 0 to 8:");
+
 		if(!scanner.hasNextInt()) {//makes sure only numbers can be added
 			System.out.println("Invalid value!");
 			scanner.next();//takes user input
+
+
 			continue;
 		}
 		int row =scanner.nextInt();
@@ -54,9 +57,10 @@ while (true) {
 			} else if (isValid(grid, row, col, value)) {
 			    grid[row][col] = value;
 			} else {
-			    System.out.println("\"Invalid move!\"");
+			    System.out.println("Invalid move!");
 			}
 }
+
 
 	}
 		
